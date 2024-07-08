@@ -36,6 +36,6 @@ class ReportGenerator:
                   }
         
         if top_most and args[x_axis].dtype in ['category', 'object']:
-            args = args.sort_values(by=y_axis, ascending= top_most<=0).head(int(np.sqrt(top_most**2)))
+            args = args.sort_values(by=y_axis, ascending= top_most<=0).drop_duplicates(subset=x_axis).head(int(np.sqrt(top_most**2)))
         
         return px.histogram(args, **kwargs).update_layout(bargap=0.02)
